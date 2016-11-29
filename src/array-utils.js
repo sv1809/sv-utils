@@ -11,7 +11,7 @@ export function getIndexByProperty(arr, propertyValue, property) {
     if(!Array.isArray(arr)) {
         return;
     }
-    if(!property) {
+    if(property == null) {
         return arr.indexOf(propertyValue);
     }
     for (let i = 0, l = arr.length; i < l; i++) {
