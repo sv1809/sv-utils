@@ -1,7 +1,3 @@
-import domUtils from './dom-utils';
-import objectUtils from './dom-utils';
-
-export default {
-    domUtils,
-    objectUtils
-}
+export { default as domUtils } from './dom-utils';
+export { default as objectUtils } from './object-utils';
+export { default as arrayUtils } from './array-utils';
