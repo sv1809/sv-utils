@@ -15,12 +15,12 @@ import { objectUtils } from 'sv-utils';
 ```js
 objectUtils.getValue(object, property)
 ```
-`property` - string, path to property, eg 'prop1.prop2.prop3'
+`property` - string, path to property, e.g. 'prop1.prop2.prop3'
 
 ```js
 objectUtils.setValue(object, property, value)
 ```
-`property` - string, path to property, eg 'prop1.prop2.prop3'
+`property` - string, path to property, e.g. 'prop1.prop2.prop3'
 
 ### Array utils
 
