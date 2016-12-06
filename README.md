@@ -13,7 +13,12 @@ npm install sv-utils --save
 import { objectUtils } from 'sv-utils';
 ```
 ```js
-objectUtils.findProperty(object, property)
+objectUtils.getValue(object, property)
+```
+`property` - string, path to property, eg 'prop1.prop2.prop3'
+
+```js
+objectUtils.setValue(object, property, value)
 ```
 `property` - string, path to property, eg 'prop1.prop2.prop3'
 
