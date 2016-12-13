@@ -12,7 +12,14 @@ describe('Object utils', () => {
                 prop1_1: null,
                 prop1_3: {
                     prop1_3_1: '1.3.1'
-                }
+                },
+                prop1_4: [{
+                    prop1: '1'
+                }, {
+                    prop1: '2'
+                }, [{
+                    prop1: '1'
+                }]]
             }
         }
         done();
@@ -59,6 +66,12 @@ describe('Object utils', () => {
         it('it should return undefined when property is undefined', (done) => {
             const res = objectUtils.getValue(testObject, undefined);
             assert.equal(res, undefined);
+            done();
+        });
+
+        it('it should return value when property with array', (done) => {
+            const res = objectUtils.getValue(testObject, 'prop1.prop1_4[1].prop1');
+            assert.equal(res, '2');
             done();
         });
 

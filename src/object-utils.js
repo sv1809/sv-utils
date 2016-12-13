@@ -2,15 +2,6 @@
  * Find object property by string, e.g. 'prop1.prop2.prop3'
  * Return undefined if property not found
  */
-export function getValue(obj, property) {
-    if (obj == null || property == null) {
-        return;
-    }
-    const arr = property.split(".");
-    while (arr.length && (obj = obj[arr.shift()])) {
-    }
-    return obj;
-}
 
 export function setValue(obj, property, newValue) {
     if (obj == null) {
@@ -43,6 +34,29 @@ export function setValue(obj, property, newValue) {
         return Object.assign({}, obj, { [property]: newValue });
     }
     return Object.assign({}, obj, { [current]: setValue(obj[current], property.substring(ind + 1), newValue) });
+}
+
+export function getValue(obj, property) {
+    if (obj == null || property == null) {
+        return;
+    }
+    const ind = property.indexOf('.');
+    const testArray = /^(.+)\[(\d+)\]$/;
+    const current = ind !== -1 ? property.substring(0, ind) : property;
+    const matches = testArray.exec(current);
+    if (matches) {
+        const arrInd = matches[2];
+        const prop = matches[1];
+        if (ind === -1) {
+            return obj[prop][arrInd][property];
+        } else {
+            return getValue(obj[prop][arrInd], property.substring(ind + 1));
+        }
+    }
+    if (ind === -1) {
+        return obj[property];
+    }
+    return getValue(obj[current], property.substring(ind + 1));
 }
 
 export default {
