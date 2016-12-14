@@ -19,7 +19,7 @@ describe('Object utils', () => {
                     prop1: '2'
                 }, [{
                     prop1: '1'
-                }]]
+                }], 1]
             }
         }
         done();
@@ -57,21 +57,27 @@ describe('Object utils', () => {
             done();
         });
 
-        it('it should return undefined when property is null', (done) => {
+        it('it should return object when property is null', (done) => {
             const res = objectUtils.getValue(testObject, null);
-            assert.equal(res, undefined);
+            assert.equal(res, testObject);
             done();
         });
 
-        it('it should return undefined when property is undefined', (done) => {
+        it('it should return object when property is undefined', (done) => {
             const res = objectUtils.getValue(testObject, undefined);
-            assert.equal(res, undefined);
+            assert.equal(res, testObject);
             done();
         });
 
         it('it should return value when property with array', (done) => {
             const res = objectUtils.getValue(testObject, 'prop1.prop1_4[1].prop1');
             assert.equal(res, '2');
+            done();
+        });
+
+        it('it should return value when property is array element', (done) => {
+            const res = objectUtils.getValue(testObject, 'prop1.prop1_4[3]');
+            assert.equal(res, 1);
             done();
         });
 

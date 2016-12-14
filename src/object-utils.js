@@ -37,8 +37,11 @@ export function setValue(obj, property, newValue) {
 }
 
 export function getValue(obj, property) {
-    if (obj == null || property == null) {
+    if (obj == null) {
         return;
+    }
+    if (property == null) {
+        return obj;
     }
     const ind = property.indexOf('.');
     const testArray = /^(.+)\[(\d+)\]$/;
@@ -47,16 +50,9 @@ export function getValue(obj, property) {
     if (matches) {
         const arrInd = matches[2];
         const prop = matches[1];
-        if (ind === -1) {
-            return obj[prop][arrInd][property];
-        } else {
-            return getValue(obj[prop][arrInd], property.substring(ind + 1));
-        }
+        return getValue(obj[prop][arrInd], ind === -1 ? null : property.substring(ind + 1));
     }
-    if (ind === -1) {
-        return obj[property];
-    }
-    return getValue(obj[current], property.substring(ind + 1));
+    return getValue(obj[current], ind === -1 ? null : property.substring(ind + 1));
 }
 
 export default {
