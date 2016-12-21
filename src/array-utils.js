@@ -1,6 +1,6 @@
 export function getElementByProperty(arr, propertyValue, property) {
     const ind = getIndexByProperty(arr, propertyValue, property);
-    if(!ind || ind === -1) {
+    if (ind == null || ind === -1) {
         return;
     } else {
         return arr[ind];
@@ -8,10 +8,10 @@ export function getElementByProperty(arr, propertyValue, property) {
 }
 
 export function getIndexByProperty(arr, propertyValue, property) {
-    if(!Array.isArray(arr)) {
+    if (!Array.isArray(arr)) {
         return;
     }
-    if(property == null) {
+    if (property == null) {
         return arr.indexOf(propertyValue);
     }
     for (let i = 0, l = arr.length; i < l; i++) {
