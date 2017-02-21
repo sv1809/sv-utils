@@ -7,7 +7,7 @@ export function setValue(obj, property, newValue) {
     if (obj == null) {
         obj = {};
     }
-    const ind = property.indexOf('.');
+    const ind = property.indexOf(".");
     const testArray = /^(.+)\[(\d+)\]$/;
     const current = ind !== -1 ? property.substring(0, ind) : property;
     const matches = testArray.exec(current);
@@ -17,7 +17,7 @@ export function setValue(obj, property, newValue) {
         const res = obj[prop].map((curr, i) => {
             if (i == arrInd) {
                 if (ind === -1) {
-                    if (typeof curr === 'object') {
+                    if (typeof curr === "object") {
                         return Object.assign({}, curr, newValue);
                     } else {
                         return newValue;
@@ -43,7 +43,7 @@ export function getValue(obj, property) {
     if (property == null) {
         return obj;
     }
-    const ind = property.indexOf('.');
+    const ind = property.indexOf(".");
     const testArray = /^(.+)\[(\d+)\]$/;
     const current = ind !== -1 ? property.substring(0, ind) : property;
     const matches = testArray.exec(current);
@@ -58,4 +58,4 @@ export function getValue(obj, property) {
 export default {
     getValue,
     setValue,
-}
+};

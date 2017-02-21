@@ -6,7 +6,7 @@ export function getHtmlElement(selector) {
     if (isHtmlElement(selector)) {
         return selector;
     }
-    if (typeof selector === 'string') {
+    if (typeof selector === "string") {
         return document.querySelector(selector);
     }
     return null;
@@ -15,4 +15,4 @@ export function getHtmlElement(selector) {
 export default {
     isHtmlElement,
     getHtmlElement
-}
+};

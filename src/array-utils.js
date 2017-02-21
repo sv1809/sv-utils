@@ -25,4 +25,4 @@ export function getIndexByProperty(arr, propertyValue, property) {
 export default {
     getElementByProperty,
     getIndexByProperty
-}
+};
