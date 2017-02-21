@@ -23,8 +23,8 @@ module.exports = {
     },
     output: {
         path: distPath,
-        filename: '[name].js',
-        libraryTarget: 'umd',
+        filename: "index.js",
+        libraryTarget: "umd",
     },
     module: {
         rules: [
