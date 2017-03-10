@@ -8,33 +8,31 @@ export function setValue(obj, property, newValue) {
         obj = {};
     }
     const ind = property.indexOf(".");
-    const testArray = /^(.+)\[(\d+)\]$/;
+    const testArray = /^(.+)?\[(\d+)\]$/;
     const current = ind !== -1 ? property.substring(0, ind) : property;
     const matches = testArray.exec(current);
     if (matches) {
         const arrInd = matches[2];
         const prop = matches[1];
-        const res = obj[prop].map((curr, i) => {
+        const checkArrayElement = (curr, i) => {
             if (i == arrInd) {
                 if (ind === -1) {
-                    if (typeof curr === "object") {
-                        return Object.assign({}, curr, newValue);
-                    } else {
-                        return newValue;
-                    }
+                    return newValue;
                 } else {
                     return setValue(curr, property.substring(ind + 1), newValue);
                 }
             }
             return curr;
-        });
-        return Object.assign({}, obj, { [prop]: res });
+        };
+        const res = prop != null ? obj[prop].map(checkArrayElement) : obj.map(checkArrayElement);
+        return prop != null ? Object.assign({}, obj, { [prop]: res }) : obj = res;
     }
     if (ind === -1) {
         return Object.assign({}, obj, { [property]: newValue });
     }
     return Object.assign({}, obj, { [current]: setValue(obj[current], property.substring(ind + 1), newValue) });
 }
+
 
 export function getValue(obj, property) {
     if (obj == null) {
